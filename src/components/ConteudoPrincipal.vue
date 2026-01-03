@@ -1,41 +1,25 @@
 <script lang="ts">
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
-import Tag from './Tag.vue';
+import SuaLista from './SuaLista.vue';
 
 export default {
   data() {
     return {
-      ingredientes: []
+      ingredientes: ['manteiga', 'carne']
     }
   },
-  components: { SelecionarIngredientes, Tag }
+  components: { SelecionarIngredientes, SuaLista }
 
 }
 
 </script>
 
-<!--Logica da lista/ 'v-for' permite que puxemos um array     -->
-<!--':' permite que escrevamos variaveis JS dentro da key-->
-<!-- '{{}}' sintaxi do bigode, que permite que usemos o array puxado pelo 'v-for'-->
 <template>
   <main class="conteudo-principal">
     <section>
+      <SuaLista :ingredientes="ingredientes" />
 
-      <span class="subtitulo-lg sua-lista-texto">
-        Sua lista:
-      </span>
-
-      <ul v-if="ingredientes.length" class="ingredientes-sua-lista">
-        <li v-for="ingrediente in ingredientes" :key="ingrediente">
-          <Tag :texto="ingrediente" />
-        </li>
-      </ul>
-
-      <p v-else class="paragrafo lista-vazia">
-        <img src="../assets/imagens/icones/lista-vazia.svg" alt="icone de pesquisa">
-        Sua lista esta vazia
-      </p>
-
+      <SelecionarIngredientes />
     </section>
 
     <SelecionarIngredientes />
@@ -54,31 +38,6 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 5rem;
-}
-
-.sua-lista-texto {
-  color: var(--coral, #F0633C);
-  display: block;
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.ingredientes-sua-lista {
-  display: flex;
-  justify-content: center;
-  gap: 1rem 1.5rem;
-  flex-wrap: wrap;
-}
-
-.lista-vazia {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-
-  color: var(--coral, #F0633C);
-  text-align: center;
 }
 
 @media only screen and (max-width: 1300px) {
